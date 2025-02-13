@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="LambdaTest Suite" parallel="classes">
+    <test name="LambdaTest Tests">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="url" value="https://www.lambdatest.com/selenium-playground/"/>
+        <classes>
+
+            <class name="com.lambdaTests.Test.TestScenario2"/>
+            <class name="com.lambdaTests.Test.TestScenario3"/>
+            <class name="com.lambdaTests.Test.TestScenario1"/>
+        </classes>
+    </test>
+</suite>
