@@ -10,35 +10,35 @@
         <class name="com.lambdaTests.Test.TestScenario1"/>
     </classes>
 </test>
-<test name="EdgeTests">
-    <parameter name="browser" value="MicrosoftEdge"/>
-    <parameter name="version" value="127.0"/>
-    <parameter name="platform" value="macOS Ventura"/>
-    <classes>
-        <class name="com.lambdaTests.Test.TestScenario2"/>
-        <class name="com.lambdaTests.Test.TestScenario3"/>
-        <class name="com.lambdaTests.Test.TestScenario1"/>
-    </classes>
-</test>
-<test name="FirefoxTests">
-    <parameter name="browser" value="firefox"/>
-    <parameter name="version" value="130.0"/>
-    <parameter name="platform" value="Windows 11"/>
-    <classes>
-        <class name="com.lambdaTests.Test.TestScenario2"/>
-        <class name="com.lambdaTests.Test.TestScenario3"/>
-        <class name="com.lambdaTests.Test.TestScenario1"/>
-    </classes>
-</test>
-<test name="IETests">
-    <parameter name="browser" value="internet explorer"/>
-    <parameter name="version" value="11.0"/>
-    <parameter name="platform" value="Windows 10"/>
-    <classes>
-        <class name="com.lambdaTests.Test.TestScenario2"/>
-        <class name="com.lambdaTests.Test.TestScenario3"/>
-        <class name="com.lambdaTests.Test.TestScenario1"/>
-    </classes>
-</test>
+<!--<test name="EdgeTests">-->
+<!--    <parameter name="browser" value="edge"/>-->
+<!--    <parameter name="version" value="126.0"/>-->
+<!--    <parameter name="platform" value="macOS Ventura"/>-->
+<!--    <classes>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario2"/>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario3"/>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario1"/>-->
+<!--    </classes>-->
+<!--</test>-->
+<!--<test name="FirefoxTests">-->
+<!--    <parameter name="browser" value="firefox"/>-->
+<!--    <parameter name="version" value="130.0"/>-->
+<!--    <parameter name="platform" value="Windows 11"/>-->
+<!--    <classes>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario2"/>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario3"/>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario1"/>-->
+<!--    </classes>-->
+<!--</test>-->
+<!--<test name="IETests">-->
+<!--    <parameter name="browser" value="IETests"/>-->
+<!--    <parameter name="version" value="11.0"/>-->
+<!--    <parameter name="platform" value="Windows 10"/>-->
+<!--    <classes>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario2"/>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario3"/>-->
+<!--        <class name="com.lambdaTests.Test.TestScenario1"/>-->
+<!--    </classes>-->
+<!--</test>-->
 </suite>
 

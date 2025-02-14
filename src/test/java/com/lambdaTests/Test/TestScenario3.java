@@ -8,7 +8,7 @@ public class TestScenario3 extends BaseClass {
 
     @Test
     public void validateAlertMessage() {
-        getDriver().findElement(By.linkText("Javascript Alerts")).click();
+        getDriver().findElement(By.cssSelector("[href*='javascript-alert-box-demo']")).click();
         getDriver().findElement(By.xpath("//*[text()=\"JavaScript Alerts\"]//self::button"))
                 .click();
 
