@@ -5,9 +5,9 @@
     <parameter name="version" value="128.0"/>
     <parameter name="platform" value="Windows 10"/>
     <classes>
-<!--        <class name="com.lambdaTests.Test.TestScenario2"/>-->
+        <class name="com.lambdaTests.Test.TestScenario2"/>
         <class name="com.lambdaTests.Test.TestScenario3"/>
-<!--        <class name="com.lambdaTests.Test.TestScenario1"/>-->
+        <class name="com.lambdaTests.Test.TestScenario1"/>
     </classes>
 </test>
 <test name="EdgeTests">
@@ -16,8 +16,8 @@
     <parameter name="platform" value="macOS Ventura"/>
     <classes>
         <class name="com.lambdaTests.Test.TestScenario2"/>
-<!--        <class name="com.lambdaTests.Test.TestScenario3"/>-->
-<!--        <class name="com.lambdaTests.Test.TestScenario1"/>-->
+        <class name="com.lambdaTests.Test.TestScenario3"/>
+        <class name="com.lambdaTests.Test.TestScenario1"/>
     </classes>
 </test>
 <test name="FirefoxTests">
@@ -26,8 +26,8 @@
     <parameter name="platform" value="Windows 11"/>
     <classes>
         <class name="com.lambdaTests.Test.TestScenario2"/>
-<!--        <class name="com.lambdaTests.Test.TestScenario3"/>-->
-<!--        <class name="com.lambdaTests.Test.TestScenario1"/>-->
+        <class name="com.lambdaTests.Test.TestScenario3"/>
+        <class name="com.lambdaTests.Test.TestScenario1"/>
     </classes>
 </test>
 <test name="IETests">
@@ -36,8 +36,8 @@
     <parameter name="platform" value="Windows 10"/>
     <classes>
         <class name="com.lambdaTests.Test.TestScenario2"/>
-<!--        <class name="com.lambdaTests.Test.TestScenario3"/>-->
-<!--        <class name="com.lambdaTests.Test.TestScenario1"/>-->
+        <class name="com.lambdaTests.Test.TestScenario3"/>
+        <class name="com.lambdaTests.Test.TestScenario1"/>
     </classes>
 </test>
 </suite>

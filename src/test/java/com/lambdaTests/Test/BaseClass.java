@@ -1,106 +1,124 @@
 package com.lambdaTests.Test;
 
-////import org.openqa.selenium.*;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.remote.DesiredCapabilities;
-//import org.openqa.selenium.remote.RemoteWebDriver;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.testng.annotations.*;
-//import java.net.MalformedURLException;
-//import java.net.URL;
-import java.time.Duration;
-//import java.util.HashMap;
-//
-//public class BaseClass {
-//    protected WebDriver driver;
-//    protected WebDriverWait wait;
-//    String UserName = "hmaram21";
-//    String AccessToken ="OMjdH4yKzUrrHksRqZiNx0crd51IXnfb2YBQSJ8b2qNbu91APw";
-//    @BeforeMethod
-//    @Parameters({"browser", "browserVersion", "platform"})
-//    public void setUp(String browser, String browserVersion, String platform) throws MalformedURLException {
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("browserName", browser);
-//        capabilities.setCapability("browserVersion", browserVersion);
-//        capabilities.setCapability("platform", platform);
-//        capabilities.setCapability("LT:Options", new HashMap<String, Object>() {{
-//            put("username", UserName);
-//            put("accessKey", AccessToken);
-//            put("resolution", "1920x1080");
-//            put("build", "TestBuild");
-//            put("name", "testng");
-//            put("network", true);
-//            put("video", true);
-//            put("console", true);
-//        }});
-//
-//        driver = new RemoteWebDriver(new URL("https://"+UserName+":"+AccessToken+"@hub.lambdatest.com/wd/hub"), capabilities);
-//        driver.get("https://www.lambdatest.com/selenium-playground/");
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-//
-//
-//    }
-//
-//    @AfterMethod
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
-//}
-
-import org.openqa.selenium.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.util.HashMap;
 
+public class BaseClass {
 
-public class BaseClass{
-    WebDriver driver = null;
+    private static final ThreadLocal<RemoteWebDriver> DRIVER = new ThreadLocal<>();
 
-    public static String status = "passed";
-    String username = "hmaram21";
-    String access_key = "OMjdH4yKzUrrHksRqZiNx0crd51IXnfb2YBQSJ8b2qNbu91APw";
+    public RemoteWebDriver getDriver() {
+        return DRIVER.get();
+    }
 
-
+    private void setDriver(RemoteWebDriver remoteWebDriver) {
+        DRIVER.set(remoteWebDriver);
+    }
 
     @BeforeTest
-    @Parameters(value={"browser","version","platform"})
-    public void testSetUp(String browser, String version, String platform) throws Exception
-    {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("build", "[LambdaTest] Demonstration of Selenium Automation Testing");
-        capabilities.setCapability("name", "[LambdaTest] Demonstration of Selenium Automation Testing");
-        capabilities.setCapability("platform", platform);
-        capabilities.setCapability("browserName", browser);
-        capabilities.setCapability("version",version);
-        capabilities.setCapability("tunnel",false);
-        capabilities.setCapability("network",true);
-        capabilities.setCapability("console",true);
-        capabilities.setCapability("visual",true);
+    @Parameters({ "browser", "version", "platform" })
+    public void setup(String browser, String version, String platform) {
+        final String userName = "hmaram21";
+        final String accessKey = "OMjdH4yKzUrrHksRqZiNx0crd51IXnfb2YBQSJ8b2qNbu91APw";
+        final String gridUrl = "@hub.lambdatest.com/wd/hub";
 
-        try
-        {
-            driver = new RemoteWebDriver(new URL("https://" + username + ":" + access_key + "@hub.lambdatest.com/wd/hub"), capabilities);
-                }
-        catch (MalformedURLException e)
-        {
-            System.out.println("Invalid grid URL");
+        if (browser.equalsIgnoreCase("chrome")) {
+            try {
+                setDriver(new RemoteWebDriver(new URL("http://" + userName + ":" + accessKey + gridUrl), getChromeOptions(version, platform)));
+
+            } catch (final MalformedURLException e) {
+                throw new Error("Could not start the chrome browser on LambdaTest cloud grid");
+            }
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            try {
+                setDriver(new RemoteWebDriver(new URL("http://" + userName + ":" + accessKey + gridUrl), getFirefoxOptions(version, platform)));
+
+            } catch (final MalformedURLException e) {
+                throw new Error("Could not start the firefox browser on LambdaTest cloud grid");
+            }
+        } else if (browser.equalsIgnoreCase("edge")) {
+            try {
+                setDriver(new RemoteWebDriver(new URL("http://" + userName + ":" + accessKey + gridUrl), getEdgeOptions(version, platform)));
+
+            } catch (final MalformedURLException e) {
+                throw new Error("Could not start the firefox browser on LambdaTest cloud grid");
+            }
         }
-        System.out.println("Started session");
+        else if (browser.equalsIgnoreCase("IETests")) {
+            try {
+                setDriver(new RemoteWebDriver(new URL("http://" + userName + ":" + accessKey + gridUrl), getInternetExplorerOptions(version, platform)));
+
+            } catch (final MalformedURLException e) {
+                throw new Error("Could not start the firefox browser on LambdaTest cloud grid");
+            }
+        }
+         else {
+            throw new Error("Browser configuration is not defined!");
+        }
+        getDriver().get("https://www.lambdatest.com/selenium-playground/");
+        getDriver().manage()
+                .timeouts()
+                .implicitlyWait(Duration.ofSeconds(20));
     }
 
+    private ChromeOptions getChromeOptions(String version, String platform) {
+        var browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName(platform);
+        browserOptions.setBrowserVersion(version);
+        browserOptions.setCapability("LT:Options", getLtOptions());
 
-@AfterTest
-public void tearDown()
-{
-    if (driver != null)
-    {
-        ((JavascriptExecutor) driver).executeScript("lambda-status=" + status);
-        driver.quit();
+        return browserOptions;
     }
-}
+
+    private FirefoxOptions getFirefoxOptions(String version, String platform) {
+        var browserOptions = new FirefoxOptions();
+        browserOptions.setPlatformName(platform);
+        browserOptions.setBrowserVersion(version);
+        browserOptions.setCapability("LT:Options", getLtOptions());
+
+        return browserOptions;
+    }
+
+    private EdgeOptions getEdgeOptions(String version, String platform) {
+        var browserOptions = new EdgeOptions();
+        browserOptions.setPlatformName(platform);
+        browserOptions.setBrowserVersion(version);
+        browserOptions.setCapability("LT:Options", getLtOptions());
+
+        return browserOptions;
+    }
+
+    private InternetExplorerOptions getInternetExplorerOptions(String version, String platform) {
+        var browserOptions = new InternetExplorerOptions();
+        browserOptions.setPlatformName(platform);
+        browserOptions.setBrowserVersion(version);
+        browserOptions.setCapability("LT:Options", getLtOptions());
+
+        return browserOptions;
+    }
+
+    private HashMap<String, Object> getLtOptions() {
+        final var ltOptions = new HashMap<String, Object>();
+        ltOptions.put("project", "LambdaTest Testng Assessment");
+        ltOptions.put("build", "Build Test Scenario's");
+        ltOptions.put("name", "Testng Assessment Scenarios");
+        ltOptions.put("w3c", true);
+        ltOptions.put("visual", true);
+        ltOptions.put("plugin", "java-testNG");
+        return ltOptions;
+    }
+
+    @AfterTest
+    public void tearDown() {
+        getDriver().quit();
+    }
 }

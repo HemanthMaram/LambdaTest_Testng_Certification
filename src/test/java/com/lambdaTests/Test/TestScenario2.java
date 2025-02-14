@@ -8,8 +8,8 @@ public class TestScenario2 extends BaseClass {
 
     @Test
     public void checkboxDemo() {
-        driver.findElement(By.cssSelector("a[href*='/checkbox-demo']")).click();
-        WebElement checkbox = driver.findElement(By.id("isAgeSelected"));
+        getDriver().findElement(By.cssSelector("a[href*='/checkbox-demo']")).click();
+        WebElement checkbox =   getDriver().findElement(By.id("isAgeSelected"));
         checkbox.click();
         Assert.assertTrue(checkbox.isSelected(), "Checkbox should be selected.");
         checkbox.click();
