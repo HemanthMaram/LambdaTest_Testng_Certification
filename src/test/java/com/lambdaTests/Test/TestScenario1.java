@@ -7,7 +7,7 @@ import org.testng.asserts.SoftAssert;
 
 public class TestScenario1 extends BaseClass {
     WebDriverWait wait;
-// WebDriver driver =   getDriver();
+
     @Test
     public void validatePageTitle() {
 
