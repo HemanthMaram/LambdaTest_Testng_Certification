@@ -109,7 +109,7 @@ public class BaseClass {
     private HashMap<String, Object> getLtOptions() {
         final var ltOptions = new HashMap<String, Object>();
         ltOptions.put("project", "LambdaTest Testng Assessment");
-        ltOptions.put("build", "Build Test Scenario's");
+        ltOptions.put("build", "TestNg Assessment");
         ltOptions.put("name", "Testng Assessment Scenarios");
         ltOptions.put("w3c", true);
         ltOptions.put("visual", true);
